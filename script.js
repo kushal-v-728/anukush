@@ -69,7 +69,7 @@ function handleYesClick() {
     if (!runawayEnabled) {
         // Tease her to try No first
         const msg = yesTeasePokes[Math.min(yesTeasedCount, yesTeasePokes.length - 1)]
-        yesTeasedCount++
+        yesTeasedCount = (yesTeasedCount + 1) % yesTeasePokes.length
         showTeaseMessage(msg)
         return
     }
@@ -108,8 +108,8 @@ function handleNoClick() {
     const gifIndex = Math.min(noClickCount, gifStages.length - 1)
     swapGif(gifStages[gifIndex])
 
-    // Runaway starts at click 5
-    if (noClickCount >= 5 && !runawayEnabled) {
+    // Runaway starts at click 8
+    if (noClickCount >= 8 && !runawayEnabled) {
         enableRunaway()
         runawayEnabled = true
     }
